@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login() {
   const classes = useStyles();
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, error } = useAuth0();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -40,6 +40,9 @@ export default function Login() {
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Sign in
+        </Typography>
+        <Typography component="h1" variant="h5">
+          {error && error.message}
         </Typography>
         <form className={classes.form} noValidate>
           <TextField

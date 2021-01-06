@@ -17,7 +17,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import * as material from '@material-ui/core';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   DatePicker,
@@ -26,13 +26,13 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import { mainListItems, secondaryListItems } from '../common/listItems';
-import Chart from '../common/Chart';
+// import Chart from '../common/Chart';
 import Deposits from '../common/Deposits';
 import Orders from '../common/Orders';
 import { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Copyright() {
-  console.log(material);
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -130,6 +130,7 @@ export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [selectedDate, handleDateChange] = useState(new Date());
+  const { logout } = useAuth0();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -165,8 +166,11 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            AUTH0-REACT-TEST-APP
           </Typography>
+          <IconButton onClick={() => logout({ returnTo: window.location.origin })} color="inherit">
+            <PowerSettingsNewIcon />
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -203,7 +207,7 @@ export default function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                {/* <Chart /> */}
               </Paper>
             </Grid>
             {/* Recent Deposits */}

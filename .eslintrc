@@ -22,7 +22,8 @@
     "implicit-arrow-linebreak": "off",
     "import/order": "off",
     "react/prop-types": "off",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "react/jsx-curly-newline": "off"
   },
   "env": {
     "browser": true,
