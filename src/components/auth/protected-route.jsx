@@ -1,11 +1,17 @@
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import Login from './Login';
+import { useEffect } from 'react';
 
-const ProtectedRoute = ({ component, ...args }) => {
+const ProtectedRoute = ({ component: RouteComponent, ...args }) => {
   const { isAuthenticated } = useAuth0();
+
+  useEffect(() => {
+  });
   return (
-    <Route component={isAuthenticated ? component : Login} {...args} />
+    <Route
+      render={() => !isAuthenticated ? <Redirect to="/login" /> : <RouteComponent />}
+      {...args}
+    />
   );
 };
 

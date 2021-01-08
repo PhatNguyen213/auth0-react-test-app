@@ -28,11 +28,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login() {
   const classes = useStyles();
-  const { loginWithRedirect, error } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   const handleSubmit = e => {
     e.preventDefault();
-    loginWithRedirect();
+    loginWithRedirect({
+      redirectUri: `${window.location.origin}/callback`
+    });
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -40,9 +42,6 @@ export default function Login() {
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Sign in
-        </Typography>
-        <Typography component="h1" variant="h5">
-          {error && error.message}
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
