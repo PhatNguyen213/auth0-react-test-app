@@ -1,15 +1,14 @@
 import { Redirect, Route } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
 
 const ProtectedRoute = ({ component: RouteComponent, ...args }) => {
-  const { isAuthenticated } = useAuth0();
-
-  useEffect(() => {
-  });
+  const { isAuthenticated, isLoading } = useAuth0();
   return (
     <Route
-      render={() => !isAuthenticated ? <Redirect to="/login" /> : <RouteComponent />}
+      render={() => {
+        if (isLoading) return <div>Loading</div>;
+        return !isAuthenticated ? <Redirect to="/login" /> : <RouteComponent />;
+      }}
       {...args}
     />
   );

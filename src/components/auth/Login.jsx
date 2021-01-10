@@ -24,11 +24,10 @@ const useStyles = makeStyles(theme => ({
 export default function Login() {
   const classes = useStyles();
   const { loginWithRedirect } = useAuth0();
-
   const handleSubmit = e => {
     e.preventDefault();
     loginWithRedirect({
-      redirectUri: `${window.location.origin}/callback`,
+      redirectUri: window.location.origin,
     });
   };
   return (

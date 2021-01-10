@@ -137,6 +137,9 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleLogout = () => {
+    logout({ returnTo: window.location.origin });
+  };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -168,7 +171,7 @@ export default function Dashboard() {
           >
             AUTH0-REACT-TEST-APP
           </Typography>
-          <IconButton onClick={() => logout({ returnTo: window.location.origin })} color="inherit">
+          <IconButton onClick={handleLogout} color="inherit">
             <PowerSettingsNewIcon />
           </IconButton>
           <IconButton color="inherit">
